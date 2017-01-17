@@ -1,0 +1,1405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Hangman</title>
+<script>
+var numwrong=0;
+var numright=0; 
+var theword="SUPERSTITION";
+var wrd = [];
+var n = theword.length
+var rndwin = 0;
+var rndloss = 0;
+var snd = new Audio("btnsnd.wav");
+var snd2 = new Audio("endsnd.wav");
+var snd3 = new Audio("wrngsnd.wav");
+var snd4 = new Audio("rhtsnd.wav");
+
+
+wrd[1]='AFFERENT';
+wrd[2]='RENOVATION';
+wrd[3]='ABANDONED';
+wrd[4]='SHORTAGES';
+wrd[5]='ABSOLUTES';
+wrd[6]='CONSTRUING';
+wrd[7]='ABATEMENT';
+wrd[8]='EMERGENCY';
+wrd[9]='PARAMEDIC';
+wrd[10]='WATCHDOG';
+wrd[11]='ABBREVIATED';
+wrd[12]='TYPESETTERS';
+wrd[13]='ABBREVIATING';
+wrd[14]='ADJOURNED';
+wrd[15]='SEGMENTING';
+wrd[16]='IMPLANTED';
+wrd[17]='HINDUISM';
+wrd[18]='ENTRANCING';
+wrd[19]='WELLDRESSED';
+wrd[20]='ENJOYABLY';
+wrd[21]='ABDOMINAL';
+wrd[22]='MEMORISING';
+wrd[23]='ABDUCTING';
+wrd[24]='STUDENTSHIP';
+wrd[25]='RADIATIVE';
+wrd[26]='SHORTCUTS';
+wrd[27]='PORTFOLIO';
+wrd[28]='MIGRATED';
+wrd[29]='FLIPPANT';
+wrd[30]='DELICACIES';
+wrd[31]='DYSLEXIC';
+wrd[32]='UNCORRELATED';
+wrd[33]='HOUSEMAIDS';
+wrd[34]='BIRDCAGE';
+wrd[35]='RENDERING';
+wrd[36]='DECOMPOSED';
+wrd[37]='BELONGINGS';
+wrd[38]='ALTERNATIVE';
+wrd[39]='DISENGAGE';
+wrd[40]='TEMPTING';
+wrd[41]='SUPERVISORY';
+wrd[42]='ABLEBODIED';
+wrd[43]='LUMINOUS';
+wrd[44]='INTIMIDATE';
+wrd[45]='CATANDDOG';
+wrd[46]='AUTOGRAPH';
+wrd[47]='UNCRITICALLY';
+wrd[48]='CHAMPION';
+wrd[49]='AEROPLANES';
+wrd[50]='RUDIMENTS';
+wrd[51]='EPIPHENOMENA';
+wrd[52]='DUMBFOUNDING';
+wrd[53]='AUTOMOBILE';
+wrd[54]='ABOMINABLE';
+wrd[55]='INFORMATION';
+wrd[56]='ABOMINATE';
+wrd[57]='DUNGAREES';
+wrd[58]='FERVENTLY';
+wrd[59]='RESURFACE';
+wrd[60]='MADDENING';
+wrd[61]='CRAWLING';
+wrd[62]='DISPENSARIES';
+wrd[63]='ABORTION';
+wrd[64]='IMMOBILISE';
+wrd[65]='SPRINTED';
+wrd[66]='BODYGUARDS';
+wrd[67]='DISPELLED';
+wrd[68]='EDUCATES';
+wrd[69]='ABOUNDING';
+wrd[70]='PHOTOGRAPHS';
+wrd[71]='LINCHPIN';
+wrd[72]='ABRASIVE';
+wrd[73]='MACROSCOPIC';
+wrd[74]='SATANISM';
+wrd[75]='BATTLEAXE';
+wrd[76]='CONTRITE';
+wrd[77]='COLLIDES';
+wrd[78]='WIDEEYED';
+wrd[79]='ABLATIVE';
+wrd[80]='STERLING';
+wrd[81]='CHURCHMAN';
+wrd[82]='CURRYING';
+wrd[83]='NINCOMPOOP';
+wrd[84]='TRANSFERS';
+wrd[85]='EPIDEMIC';
+wrd[86]='ABSCESSES';
+wrd[87]='CREDULOUS';
+wrd[88]='ABSCISSAE';
+wrd[89]='WOLFISHLY';
+wrd[90]='SNOWSTORMS';
+wrd[91]='REFORMING';
+wrd[92]='SILHOUETTED';
+wrd[93]='INFLATING';
+wrd[94]='CUSTODIAL';
+wrd[95]='ABSEILER';
+wrd[96]='TYPESETTING';
+wrd[97]='ABSENCES';
+wrd[98]='CAMPAIGNER';
+wrd[99]='SHORTISH';
+wrd[100]='ABSENTEEISM';
+wrd[101]='FORGIVEN';
+wrd[102]='DEPOSITION';
+wrd[103]='TWINKLES';
+wrd[104]='FOOTHILL';
+wrd[105]='EXCLUSIVIST';
+wrd[106]='RADIATOR';
+wrd[107]='TRAUMATISE';
+wrd[108]='HONOURED';
+wrd[109]='ABSOLUTION';
+wrd[110]='LENGTHEN';
+wrd[111]='TRANSGRESSES';
+wrd[112]='MATTERING';
+wrd[113]='DANDELION';
+wrd[114]='DISLOYALTY';
+wrd[115]='WEEPINGS';
+wrd[116]='TRIUMPHING';
+wrd[117]='OVERRODE';
+wrd[118]='REARRANGE';
+wrd[119]='INTERJECTION';
+wrd[120]='SPEEDBOATS';
+wrd[121]='ROOSTERS';
+wrd[122]='MANAGERSHIP';
+wrd[123]='ABSORPTION';
+wrd[124]='SCIMITARS';
+wrd[125]='COMPLICIT';
+wrd[126]='NATURIST';
+wrd[127]='UNPERSUADED';
+wrd[128]='REGIMENTED';
+wrd[129]='FELDSPAR';
+wrd[130]='ABATTOIR';
+wrd[131]='THOROUGHBRED';
+wrd[132]='SHINNING';
+wrd[133]='DISCOURSED';
+wrd[134]='CORNFLOUR';
+wrd[135]='LANDFORM';
+wrd[136]='ARISTOCRAT';
+wrd[137]='REPUDIATE';
+wrd[138]='MUTUALITY';
+wrd[139]='ABSTRACTED';
+wrd[140]='GAUCHENESS';
+wrd[141]='JACKDAWS';
+wrd[142]='ABSTRACTION';
+wrd[143]='OBSEQUIOUSLY';
+wrd[144]='DEMAGOGUERY';
+wrd[145]='AVAILABLE';
+wrd[146]='PLANGENT';
+wrd[147]='UNCHECKABLE';
+wrd[148]='SEXTUPLET';
+wrd[149]='BOUNCIEST';
+wrd[150]='ABSURDIST';
+wrd[151]='TRANSPORT';
+wrd[152]='POLYGYNOUS';
+wrd[153]='CONTRIVANCE';
+wrd[154]='KILOTONS';
+wrd[155]='ENCUMBRANCES';
+wrd[156]='DISPUTANT';
+wrd[157]='SPRINTER';
+wrd[158]='ABUSIVELY';
+wrd[159]='OPTIMISING';
+wrd[160]='DISTRIBUTING';
+wrd[161]='ABUTMENTS';
+wrd[162]='CONFESSING';
+wrd[163]='RESEMBLED';
+wrd[164]='MEDALLISTS';
+wrd[165]='TOXICOLOGY';
+wrd[166]='IGNOMINY';
+wrd[167]='UNPUBLICISED';
+wrd[168]='SPIRITEDLY';
+wrd[169]='GUARDSMAN';
+wrd[170]='LICENSEES';
+wrd[171]='UNPLOUGHED';
+wrd[172]='FUNGUSES';
+wrd[173]='DISARRAYED';
+wrd[174]='ACCEDING';
+wrd[175]='DESTINATIONS';
+wrd[176]='PATRONAGE';
+wrd[177]='CONSTITUENTS';
+wrd[178]='REMOUNTED';
+wrd[179]='ACCELERATION';
+wrd[180]='ROUTEING';
+wrd[181]='LUXURIES';
+wrd[182]='CULTURED';
+wrd[183]='REBELLIONS';
+wrd[184]='AMPERSANDS';
+wrd[185]='ZIGZAGGING';
+wrd[186]='CIVILIANS';
+wrd[187]='CONTRASTY';
+wrd[188]='BEGINNINGS';
+wrd[189]='PROCEDURES';
+wrd[190]='MILDEWED';
+wrd[191]='SLACKNESS';
+wrd[192]='SHARABLE';
+wrd[193]='SALTINESS';
+wrd[194]='DWINDLING';
+wrd[195]='PLASTERERS';
+wrd[196]='ACCEPTORS';
+wrd[197]='ACCESSED';
+wrd[198]='OSSIFIED';
+wrd[199]='FURTHERING';
+wrd[200]='TRIATHLON';
+wrd[201]='TIPSTERS';
+wrd[202]='BEADIEST';
+wrd[203]='APERIODIC';
+wrd[204]='BUSHIEST';
+wrd[205]='STEPDAUGHTER';
+wrd[206]='ACCIDENT';
+wrd[207]='TRAILERS';
+wrd[208]='ACCIDENTALLY';
+wrd[209]='SEASICKNESS';
+wrd[210]='INVENTING';
+wrd[211]='CENOTAPH';
+wrd[212]='WIDENING';
+wrd[213]='ACCLAMATIONS';
+wrd[214]='UNPREPARED';
+wrd[215]='HUNGRIER';
+wrd[216]='CONCEIVABLY';
+wrd[217]='OVERSAMPLED';
+wrd[218]='PEDDLING';
+wrd[219]='FALSIFIED';
+wrd[220]='CLOSEKNIT';
+wrd[221]='HOLISTIC';
+wrd[222]='OVERWORKING';
+wrd[223]='LEGISLATURES';
+wrd[224]='DEGAUSSING';
+wrd[225]='MODULATIONS';
+wrd[226]='GASTRITIS';
+wrd[227]='SELFEVIDENT';
+wrd[228]='VISITING';
+wrd[229]='INCREDIBLE';
+wrd[230]='ROTATORY';
+wrd[231]='GRAFTING';
+wrd[232]='UNWAVERINGLY';
+wrd[233]='ACCORDING';
+wrd[234]='ACCORDINGLY';
+wrd[235]='COGNIZANT';
+wrd[236]='ABJECTLY';
+wrd[237]='MACHINES';
+wrd[238]='RECONNECTED';
+wrd[239]='WITHERED';
+wrd[240]='BLEACHES';
+wrd[241]='SANDSTONE';
+wrd[242]='BENIGNITY';
+wrd[243]='FASCINATES';
+wrd[244]='BACKLASH';
+wrd[245]='ODOMETER';
+wrd[246]='MIGRANTS';
+wrd[247]='INDOMITABLE';
+wrd[248]='ACCREDITED';
+wrd[249]='PRESIDES';
+wrd[250]='SUBSTANTIATE';
+wrd[251]='HOMESICKNESS';
+wrd[252]='CYTOPLASM';
+wrd[253]='REPULSION';
+wrd[254]='APPENDING';
+wrd[255]='MEASURES';
+wrd[256]='IRRELEVANTLY';
+wrd[257]='DETECTIVE';
+wrd[258]='BRUSHWOOD';
+wrd[259]='SCIENTISTS';
+wrd[260]='RAINDROP';
+wrd[261]='DECIBELS';
+wrd[262]='EXPLOSION';
+wrd[263]='BREVIARY';
+wrd[264]='PASSAGEWAYS';
+wrd[265]='EXONERATION';
+wrd[266]='STEEPENED';
+wrd[267]='PADDOCKS';
+wrd[268]='HEIGHTEN';
+wrd[269]='COMPETENTLY';
+wrd[270]='SHIPBUILDERS';
+wrd[271]='EXPORTER';
+wrd[272]='CONFESSIONAL';
+wrd[273]='CIRCUMSCRIBE';
+wrd[274]='THINKTANK';
+wrd[275]='COOKBOOKS';
+wrd[276]='METHODICALLY';
+wrd[277]='WINEGLASSES';
+wrd[278]='WONDERED';
+wrd[279]='VESTMENTS';
+wrd[280]='CONSIDERABLY';
+wrd[281]='REALIGNING';
+wrd[282]='ACETATES';
+wrd[283]='TEASHOPS';
+wrd[284]='ADHERENTS';
+wrd[285]='TOLERATES';
+wrd[286]='ORIENTEERING';
+wrd[287]='HEAVENLY';
+wrd[288]='ESCORTED';
+wrd[289]='INDIRECTNESS';
+wrd[290]='RIBOSOMAL';
+wrd[291]='DIGITISED';
+wrd[292]='FLYWHEEL';
+wrd[293]='RUINATION';
+wrd[294]='ACIDIFIED';
+wrd[295]='REVOLVING';
+wrd[296]='VERTEBRAL';
+wrd[297]='AUCTIONED';
+wrd[298]='SPORTINGLY';
+wrd[299]='SLOWPOKE';
+wrd[300]='CONSUMERISM';
+wrd[301]='ACOLYTES';
+wrd[302]='DINOSAUR';
+wrd[303]='SHAKEABLE';
+wrd[304]='INCLEMENCY';
+wrd[305]='BOOKWORK';
+wrd[306]='UNAFFECTEDLY';
+wrd[307]='ACQUAINTANCE';
+wrd[308]='STRESSFUL';
+wrd[309]='ATTENDANCE';
+wrd[310]='PERFUMES';
+wrd[311]='BROWSERS';
+wrd[312]='WRESTLERS';
+wrd[313]='MOTORCYCLE';
+wrd[314]='ENCOMPASSES';
+wrd[315]='CRASHLAND';
+wrd[316]='ACQUIRED';
+wrd[317]='CONQUESTS';
+wrd[318]='TECHNOCRACY';
+wrd[319]='FUMIGATE';
+wrd[320]='THATCHERS';
+wrd[321]='INSOLENTLY';
+wrd[322]='NEWSAGENT';
+wrd[323]='HAIRSPRAYS';
+wrd[324]='EMANCIPATE';
+wrd[325]='CLEMENCY';
+wrd[326]='GLACIALLY';
+wrd[327]='ACQUITTALS';
+wrd[328]='PRESSMAN';
+wrd[329]='DISCERNIBLY';
+wrd[330]='SHIFTERS';
+wrd[331]='ROYALISTS';
+wrd[332]='PREVIEWER';
+wrd[333]='ARTERIAL';
+wrd[334]='DISABILITY';
+wrd[335]='POLLUTED';
+wrd[336]='OPTICALLY';
+wrd[337]='MYSTICISM';
+wrd[338]='ACROSTICS';
+wrd[339]='ELONGATING';
+wrd[340]='DENOUNCE';
+wrd[341]='FOOTNOTE';
+wrd[342]='HAILSTONES';
+wrd[343]='CHERRIES';
+wrd[344]='SENTIENCE';
+wrd[345]='ADJACENTLY';
+wrd[346]='DECADENCE';
+wrd[347]='CONVERGES';
+wrd[348]='SURRENDERED';
+wrd[349]='ACTIVATORS';
+wrd[350]='WORKFORCE';
+wrd[351]='SHREWDLY';
+wrd[352]='ACTIVIST';
+wrd[353]='ENACTMENTS';
+wrd[354]='ANTAGONIST';
+wrd[355]='UNBELIEVABLY';
+wrd[356]='HAPHAZARDLY';
+wrd[357]='MARSHALLER';
+wrd[358]='SANCTUARY';
+wrd[359]='MOTIVATOR';
+wrd[360]='DISTRUSTING';
+wrd[361]='BROADNESS';
+wrd[362]='ARGUABLY';
+wrd[363]='ACTUARIES';
+wrd[364]='SLEEKNESS';
+wrd[365]='TESTIFIED';
+wrd[366]='PROGRAMMER';
+wrd[367]='DISTEMPERED';
+wrd[368]='SPUTTERED';
+wrd[369]='TELEVISIONS';
+wrd[370]='DEFRAYED';
+wrd[371]='PATRIARCHY';
+wrd[372]='VAGRANCY';
+wrd[373]='ADAPTABILITY';
+wrd[374]='PENINSULAR';
+wrd[375]='VITUPERATIVE';
+wrd[376]='DISSECTING';
+wrd[377]='NINEFOLD';
+wrd[378]='POLYTHENE';
+wrd[379]='SUBSTITUTE';
+wrd[380]='RUFFIANS';
+wrd[381]='BESTKNOWN';
+wrd[382]='CERTIFYING';
+wrd[383]='TRENCHED';
+wrd[384]='RUBBERSTAMP';
+wrd[385]='IMPLODES';
+wrd[386]='CERTITUDE';
+wrd[387]='EMPATHETIC';
+wrd[388]='RELIGIOUSLY';
+wrd[389]='INITIALLY';
+wrd[390]='ALTERING';
+wrd[391]='INCORRIGIBLE';
+wrd[392]='THREADBARE';
+wrd[393]='REFOCUSES';
+wrd[394]='WEIGHING';
+wrd[395]='ENUNCIATION';
+wrd[396]='ADDRESSED';
+wrd[397]='ESCALATING';
+wrd[398]='TRANSFUSIONS';
+wrd[399]='DOWNFALL';
+wrd[400]='RELAXATION';
+wrd[401]='SIGNALLED';
+wrd[402]='PARCELLED';
+wrd[403]='EMOTIVELY';
+wrd[404]='SUNBURNS';
+wrd[405]='ABSTRACTING';
+wrd[406]='CATCHERS';
+wrd[407]='DEMENTIA';
+wrd[408]='MISLEADINGLY';
+wrd[409]='ATTENTIONAL';
+wrd[410]='SENTINELS';
+wrd[411]='DISPATCHER';
+wrd[412]='MESMERIC';
+wrd[413]='WORKHOUSES';
+wrd[414]='BANKABLE';
+wrd[415]='EXPEDITING';
+wrd[416]='PROPORTIONS';
+wrd[417]='EMPHATIC';
+wrd[418]='BRIGADES';
+wrd[419]='ADJACENCY';
+wrd[420]='BANKRUPTCIES';
+wrd[421]='MEDDLERS';
+wrd[422]='BRIDLEWAY';
+wrd[423]='ADJECTIVE';
+wrd[424]='MICROWAVES';
+wrd[425]='MIDFIELDER';
+wrd[426]='TOXAEMIA';
+wrd[427]='MARTIANS';
+wrd[428]='ADJOURNING';
+wrd[429]='INSTRUMENTED';
+wrd[430]='CROISSANTS';
+wrd[431]='WATERMILL';
+wrd[432]='ADJUDGES';
+wrd[433]='VIOLATIONS';
+wrd[434]='OBLIGATORY';
+wrd[435]='INSTANCES';
+wrd[436]='THROTTLED';
+wrd[437]='WASTEFULNESS';
+wrd[438]='ROULETTE';
+wrd[439]='AERODROMES';
+wrd[440]='ADJUNCTS';
+wrd[441]='ADJUSTABLE';
+wrd[442]='DISTASTEFUL';
+wrd[443]='PALTRIER';
+wrd[444]='RECORDISTS';
+wrd[445]='SPINDRIFT';
+wrd[446]='SIDELIGHT';
+wrd[447]='EARRINGS';
+wrd[448]='ADMINISTER';
+wrd[449]='FEELINGLY';
+wrd[450]='REGULATIONS';
+wrd[451]='ADMINISTRATE';
+wrd[452]='DEDICATE';
+wrd[453]='INIQUITOUSLY';
+wrd[454]='ADMIRALS';
+wrd[455]='CHLOROFORM';
+wrd[456]='HEARTILY';
+wrd[457]='SUITABILITY';
+wrd[458]='MISTRESSES';
+wrd[459]='HOMOSEXUALLY';
+wrd[460]='DISASSEMBLES';
+wrd[461]='LEAFLESS';
+wrd[462]='BLACKMAILED';
+wrd[463]='HANDYMEN';
+wrd[464]='UNHARMED';
+wrd[465]='OBNOXIOUSLY';
+wrd[466]='SCRIPTED';
+wrd[467]='ENQUIRING';
+wrd[468]='ALTERCATIONS';
+wrd[469]='MALTREATED';
+wrd[470]='PERCIPIENT';
+wrd[471]='ITEMISED';
+wrd[472]='ADMONISHMENT';
+wrd[473]='RESONATOR';
+wrd[474]='HAILSTORM';
+wrd[475]='ADMONITORY';
+wrd[476]='SCALPING';
+wrd[477]='COHABITING';
+wrd[478]='NEGATIVISM';
+wrd[479]='POLLUTANT';
+wrd[480]='EFFICIENTLY';
+wrd[481]='FULSOMELY';
+wrd[482]='COLLUSION';
+wrd[483]='FLATTENING';
+wrd[484]='UNBEARABLE';
+wrd[485]='CONTINUANCE';
+wrd[486]='CONFISCATE';
+wrd[487]='REITERATION';
+wrd[488]='PARAPLEGIC';
+wrd[489]='APPENDAGE';
+wrd[490]='OBSESSIVE';
+wrd[491]='MISBEHAVE';
+wrd[492]='COUNTERING';
+wrd[493]='ADROITNESS';
+wrd[494]='MISTREATING';
+wrd[495]='ADSORPTION';
+wrd[496]='DELIVERED';
+wrd[497]='REPENTANTLY';
+wrd[498]='RECTIFIED';
+wrd[499]='JUGGERNAUTS';
+wrd[500]='SLOWNESS';
+wrd[501]='WORKOUTS';
+wrd[502]='PEPPERMINTS';
+wrd[503]='RELUCTANCE';
+wrd[504]='EXCAVATORS';
+wrd[505]='CONDOLED';
+wrd[506]='GELATINE';
+wrd[507]='FOUNDATIONS';
+wrd[508]='VIGILANTE';
+wrd[509]='HESITATE';
+wrd[510]='DIGRESSIONS';
+wrd[511]='VINDICTIVE';
+wrd[512]='ENHANCED';
+wrd[513]='UNETHICALLY';
+wrd[514]='UNDERWEIGHT';
+wrd[515]='SMARTENED';
+wrd[516]='ALERTNESS';
+wrd[517]='KITTENISH';
+wrd[518]='ENCOUNTERS';
+wrd[519]='ADVANTAGE';
+wrd[520]='PARALLELING';
+wrd[521]='PROFESSED';
+wrd[522]='WHISTLING';
+wrd[523]='RESOLVED';
+wrd[524]='STRETCHERS';
+wrd[525]='MAGNANIMOUS';
+wrd[526]='ZIMBABWE';
+wrd[527]='GIDDIEST';
+wrd[528]='ARKANSAS';
+wrd[529]='HANDSOMELY';
+wrd[530]='VERITABLY';
+wrd[531]='CONSOLIDATED';
+wrd[532]='HOMOLOGIES';
+wrd[533]='FORSWEAR';
+wrd[534]='DOMINATE';
+wrd[535]='ROOSTING';
+wrd[536]='ADVERSITIES';
+wrd[537]='ATHLETICS';
+wrd[538]='ADVERTED';
+wrd[539]='ADVERTISE';
+wrd[540]='SINUSOIDALLY';
+wrd[541]='ANATOMIC';
+wrd[542]='PREDISPOSED';
+wrd[543]='DEMARCATION';
+wrd[544]='FOCUSSES';
+wrd[545]='SUCHANDSUCH';
+wrd[546]='QUARTERING';
+wrd[547]='STATELIEST';
+wrd[548]='ADVISERS';
+wrd[549]='STENCILLED';
+wrd[550]='FALTERED';
+wrd[551]='CONCORDANCES';
+wrd[552]='COCKPITS';
+wrd[553]='ADVOCATED';
+wrd[554]='ADVOCATES';
+wrd[555]='POLYHEDRAL';
+wrd[556]='RENUNCIATION';
+wrd[557]='HOLOCAUSTS';
+wrd[558]='PROTOPLASM';
+wrd[559]='EMULSION';
+wrd[560]='AEROBATICS';
+wrd[561]='SINCEREST';
+wrd[562]='STICKLER';
+wrd[563]='EVOCATIONS';
+wrd[564]='INORDINATE';
+wrd[565]='REDUCTIONISM';
+wrd[566]='PREACHERS';
+wrd[567]='SLENDERLY';
+wrd[568]='BRIGHTNESS';
+wrd[569]='OBLIGING';
+wrd[570]='UPPERMOST';
+wrd[571]='SENTINEL';
+wrd[572]='WELLMANNERED';
+wrd[573]='EVALUABLE';
+wrd[574]='AEROPLANE';
+wrd[575]='INDUSTRY';
+wrd[576]='JOLLIEST';
+wrd[577]='DIAGONALLY';
+wrd[578]='AESTHETE';
+wrd[579]='ARCHITECT';
+wrd[580]='ENTRUSTED';
+wrd[581]='AESTHETICISM';
+wrd[582]='SHEEPISHLY';
+wrd[583]='SANDBANKS';
+wrd[584]='TEMPTRESS';
+wrd[585]='VISIONARIES';
+wrd[586]='OVERWHELMS';
+wrd[587]='ARBITRAL';
+wrd[588]='LANDSCAPED';
+wrd[589]='CHEERFUL';
+wrd[590]='ANDROGYNOUS';
+wrd[591]='SNUFFING';
+wrd[592]='AFFECTIVE';
+wrd[593]='PATRILINEAL';
+wrd[594]='AFFIDAVIT';
+wrd[595]='AFFIDAVITS';
+wrd[596]='HIGHLIGHTER';
+wrd[597]='REGRESSIVE';
+wrd[598]='MESMERISED';
+wrd[599]='HYPERSPHERE';
+wrd[600]='AFFILIATION';
+wrd[601]='AFFILIATIONS';
+wrd[602]='AFFINITIES';
+wrd[603]='SUPERVISORS';
+wrd[604]='RECONSIDERED';
+wrd[605]='AFFIRMATIONS';
+wrd[606]='DEPOSITIONS';
+wrd[607]='COMMITTAL';
+wrd[608]='REMINDERS';
+wrd[609]='ENTRAPMENT';
+wrd[610]='FLESHIER';
+wrd[611]='UNCOILED';
+wrd[612]='FLIPFLOP';
+wrd[613]='SUBGROUPS';
+wrd[614]='AFFLICTS';
+wrd[615]='AFFLUENCE';
+wrd[616]='AFFLUENT';
+wrd[617]='GHOSTLIEST';
+wrd[618]='WORTHINESS';
+wrd[619]='AFFORDING';
+wrd[620]='WETTABLE';
+wrd[621]='AFFRONTED';
+wrd[622]='PROTOTYPING';
+wrd[623]='CROATIAN';
+wrd[624]='LILLIPUTIAN';
+wrd[625]='TAUTNESS';
+wrd[626]='ARMOURPLATED';
+wrd[627]='AFTERCARE';
+wrd[628]='PROPINQUITY';
+wrd[629]='INCUBATED';
+wrd[630]='CENTIMES';
+wrd[631]='SEAPLANES';
+wrd[632]='DECIDABILITY';
+wrd[633]='UNSTEADINESS';
+wrd[634]='PARADIGMATIC';
+wrd[635]='NARRATIVES';
+wrd[636]='CAPITALISM';
+wrd[637]='OCCIPITAL';
+wrd[638]='FIREWORKS';
+wrd[639]='SEDATING';
+wrd[640]='MURMURER';
+wrd[641]='IMPORTUNED';
+wrd[642]='UNBUNDLED';
+wrd[643]='EXEMPTED';
+wrd[644]='AGENDUMS';
+wrd[645]='ANTAGONISTS';
+wrd[646]='INJURIOUS';
+wrd[647]='EXPOSITIONS';
+wrd[648]='FARMHOUSE';
+wrd[649]='WALLCHART';
+wrd[650]='OVERDONE';
+wrd[651]='BLUEBIRD';
+wrd[652]='ENFRANCHISE';
+wrd[653]='PRIZEWINNER';
+wrd[654]='SHIPWRIGHT';
+wrd[655]='AGGREGATING';
+wrd[656]='DECLARATORY';
+wrd[657]='ENOUNCES';
+wrd[658]='AGGRESSION';
+wrd[659]='SOCIETIES';
+wrd[660]='DRUGGING';
+wrd[661]='BLINDNESS';
+wrd[662]='HEADSTONE';
+wrd[663]='DELIVERABLE';
+wrd[664]='AGGRIEVED';
+wrd[665]='BRIGHTEST';
+wrd[666]='INTRODUCED';
+wrd[667]='DISCRETION';
+wrd[668]='HORRIFICALLY';
+wrd[669]='DISSOCIATIVE';
+wrd[670]='COAGULATED';
+wrd[671]='COLLABORATED';
+wrd[672]='BEGRUDGINGLY';
+wrd[673]='CONCILIATOR';
+wrd[674]='ENTRAINMENT';
+wrd[675]='REGELATE';
+wrd[676]='AGNOSTICISM';
+wrd[677]='UNBOILED';
+wrd[678]='RETENTION';
+wrd[679]='UNABASHED';
+wrd[680]='VICTIMLESS';
+wrd[681]='UNFLATTERING';
+wrd[682]='FROTHIER';
+wrd[683]='UNCAPPED';
+wrd[684]='SWEETHEART';
+wrd[685]='ASTOUNDS';
+wrd[686]='SUBCONSCIOUS';
+wrd[687]='UNSIGHTLY';
+wrd[688]='MALATHION';
+wrd[689]='REROUTES';
+wrd[690]='GRIZZLIEST';
+wrd[691]='FEEDSTUFFS';
+wrd[692]='SHIPOWNERS';
+wrd[693]='GARDENING';
+wrd[694]='ANCILLARY';
+wrd[695]='PARADOXES';
+wrd[696]='MEDIATION';
+wrd[697]='AGRONOMISTS';
+wrd[698]='BIRDBATHS';
+wrd[699]='GANGRENOUS';
+wrd[700]='FLAGRANTLY';
+wrd[701]='QUARANTINED';
+wrd[702]='PHONETICALLY';
+
+wrd[703]='CHORALES';
+wrd[704]='MODELLING';
+wrd[705]='UNDERGROWTH';
+wrd[706]='OUTPUTTING';
+wrd[707]='MICROGRAMS';
+wrd[708]='EFFULGENCE';
+wrd[709]='REDHANDED';
+wrd[710]='VESTIGES';
+wrd[711]='RECLUSES';
+wrd[712]='FORMULAS';
+wrd[713]='SLOUGHING';
+wrd[714]='BACKSTREETS';
+wrd[715]='ERECTIONS';
+wrd[716]='REMAKING';
+wrd[717]='AIRLIFTS';
+wrd[718]='CALLOUSED';
+wrd[719]='CONTENDER';
+wrd[720]='INTERMEDIATE';
+wrd[721]='UNIFORMED';
+wrd[722]='PEASANTRY';
+wrd[723]='ALLOTTED';
+wrd[724]='REMEDIED';
+wrd[725]='REFRESHINGLY';
+wrd[726]='AIRSPACE';
+wrd[727]='ETHOLOGISTS';
+wrd[728]='EXPANSION';
+wrd[729]='DEPORTEES';
+wrd[730]='AIRTIGHT';
+wrd[731]='AIRWAVES';
+wrd[732]='AIRWORTHY';
+wrd[733]='ALABASTER';
+wrd[734]='ENCIRCLES';
+wrd[735]='FOLLOWABLE';
+wrd[736]='WEATHERPROOF';
+wrd[737]='FRAGRANCES';
+wrd[738]='PERCUSSING';
+wrd[739]='AUTOMATICS';
+wrd[740]='ALBATROSS';
+wrd[741]='PERPETUATING';
+wrd[742]='SIGNALLERS';
+wrd[743]='COMPILERS';
+wrd[744]='FOXHUNTING';
+wrd[745]='PROFITED';
+wrd[746]='ARBITRATES';
+wrd[747]='DILUTIONS';
+wrd[748]='ALCOHOLISM';
+wrd[749]='HEAVENWARD';
+wrd[750]='TURNROUND';
+wrd[751]='CONVECTED';
+wrd[752]='COMBUSTED';
+wrd[753]='PROTRACTORS';
+wrd[754]='TRANSCRIBED';
+wrd[755]='ALERTING';
+wrd[756]='KINGFISHERS';
+wrd[757]='TRANSMITTING';
+wrd[758]='PAWNBROKER';
+wrd[759]='RETRIEVING';
+wrd[760]='MISCREANTS';
+wrd[761]='MINISTERS';
+wrd[762]='ALGORITHM';
+wrd[763]='TEASPOON';
+wrd[764]='DEFINITIVELY';
+wrd[765]='ANATOMICALLY';
+wrd[766]='ALIENATED';
+wrd[767]='HONORIFIC';
+wrd[768]='OUTGOING';
+wrd[769]='CLIMAXING';
+wrd[770]='PANTHEON';
+wrd[771]='CANCEROUS';
+wrd[772]='INFECTIOUS';
+wrd[773]='ILLUSIONIST';
+wrd[774]='INCURSION';
+wrd[775]='STAIRHEAD';
+wrd[776]='CONCLUDED';
+wrd[777]='PROPPING';
+wrd[778]='ALIQUOTS';
+wrd[779]='HETERODOXY';
+wrd[780]='SHAREHOLDING';
+wrd[781]='HEARTWARMING';
+wrd[782]='HUSHHUSH';
+wrd[783]='EXEMPLIFYING';
+wrd[784]='SEASONABLY';
+wrd[785]='PRICKLIEST';
+wrd[786]='EXCISING';
+wrd[787]='ALLEGEDLY';
+wrd[788]='PHEROMONES';
+wrd[789]='SPECIMEN';
+wrd[790]='BEMUSEDLY';
+wrd[791]='ALLEGORICAL';
+wrd[792]='AQUATICS';
+wrd[793]='SPRIGHTLIEST';
+wrd[794]='ALLERGEN';
+wrd[795]='SECESSIONIST';
+wrd[796]='SINGEING';
+wrd[797]='ALLERGIES';
+wrd[798]='UNEXPURGATED';
+wrd[799]='STATISTIC';
+wrd[800]='SLAUGHTERING';
+wrd[801]='DESSICATION';
+wrd[802]='SCORELESS';
+wrd[803]='TRIVIALITY';
+wrd[804]='SYNOPTIC';
+wrd[805]='MERMAIDS';
+wrd[806]='BIBLIOPHILE';
+wrd[807]='SUBFAMILY';
+wrd[808]='BONEMEAL';
+wrd[809]='HERITABLE';
+wrd[810]='MOBILITY';
+wrd[811]='RECTIFIES';
+wrd[812]='EXPEDIENCE';
+wrd[813]='PUNISHMENT';
+wrd[814]='GLIMMERS';
+wrd[815]='INDIVIDUALS';
+wrd[816]='ALLOCATE';
+wrd[817]='PREDATION';
+wrd[818]='CHAPERONED';
+wrd[819]='RAVINGLY';
+wrd[820]='COAUTHOR';
+wrd[821]='APPEARANCES';
+wrd[822]='ALLOCATOR';
+wrd[823]='ALLOCATORS';
+wrd[824]='METEORITE';
+wrd[825]='ERGONOMIC';
+wrd[826]='UNSEALABLE';
+wrd[827]='ADULTERATION';
+wrd[828]='INACTIVATING';
+wrd[829]='SUMMARISING';
+wrd[830]='ASSERTION';
+wrd[831]='ALLOWABLE';
+wrd[832]='UNDERPLAY';
+wrd[833]='CELIBACY';
+wrd[834]='GLASNOST';
+wrd[835]='COLLIMATOR';
+wrd[836]='INVENTOR';
+wrd[837]='TYRANNICAL';
+wrd[838]='TERRORISTS';
+wrd[839]='NARROWED';
+wrd[840]='ORGANISTS';
+wrd[841]='HOMOGENISE';
+wrd[842]='LISTERIA';
+wrd[843]='UNVENTILATED';
+wrd[844]='FEDERALISM';
+wrd[845]='ORTHODOX';
+wrd[846]='CARPORTS';
+wrd[847]='NARROWER';
+wrd[848]='COCKROACH';
+wrd[849]='VARIANCES';
+wrd[850]='NAVIGATORS';
+wrd[851]='GILTEDGED';
+wrd[852]='RECTIFIER';
+wrd[853]='CONCEITS';
+wrd[854]='ALPHABETIC';
+wrd[855]='ACCELERATED';
+wrd[856]='ALPHABETS';
+wrd[857]='THROBBED';
+wrd[858]='PROSECUTIONS';
+wrd[859]='BANDSTAND';
+wrd[860]='SIGNALLY';
+wrd[861]='STARCHES';
+wrd[862]='ALTERATIONS';
+wrd[863]='PARALLAX';
+wrd[864]='COMMUNICATE';
+wrd[865]='WEIGHTLESS';
+wrd[866]='WAVEFRONT';
+wrd[867]='SURROGACY';
+wrd[868]='MEDIALLY';
+wrd[869]='EMULSIONS';
+wrd[870]='MESCALINE';
+wrd[871]='LOYALIST';
+wrd[872]='DILIGENTLY';
+wrd[873]='QUIETENED';
+wrd[874]='ALTERNATIONS';
+wrd[875]='MISERABLE';
+wrd[876]='NOCTUIDS';
+wrd[877]='REASSERTING';
+wrd[878]='ALTERNATORS';
+wrd[879]='MIDEVENING';
+wrd[880]='ALTIMETER';
+wrd[881]='HELLENIC';
+wrd[882]='ACCRETIONS';
+wrd[883]='INSUFFERABLY';
+wrd[884]='STANDARDISE';
+wrd[885]='SHEEPDOGS';
+wrd[886]='TERRAZZO';
+wrd[887]='PERCEPTIONS';
+wrd[888]='UNTRODDEN';
+wrd[889]='HYPOCHONDRIA';
+wrd[890]='MATHEMATICS';
+wrd[891]='GRANTING';
+wrd[892]='TRIFFIDS';
+wrd[893]='ACCRUALS';
+wrd[894]='FLAPJACK';
+wrd[895]='AMALGAMATION';
+wrd[896]='STEGOSAURUS';
+wrd[897]='CYBERPUNK';
+wrd[898]='QUINQUENNIAL';
+wrd[899]='OCCUPIER';
+wrd[900]='HACKNEYED';
+wrd[901]='STUPENDOUSLY';
+wrd[902]='AMATEURS';
+wrd[903]='PIROUETTING';
+wrd[904]='AMAZINGLY';
+wrd[905]='SMALLTOWN';
+wrd[906]='COMPRISED';
+wrd[907]='AMBERGRIS';
+wrd[908]='PALENESS';
+wrd[909]='REVOLTING';
+wrd[910]='LITIGATING';
+wrd[911]='INTERACTIONS';
+wrd[912]='AMBIGUITY';
+wrd[913]='SUBVENTIONS';
+wrd[914]='BITCHINESS';
+wrd[915]='SNAPSHOT';
+wrd[916]='CONSTANTS';
+wrd[917]='BITTERNESS';
+wrd[918]='ATTESTATION';
+wrd[919]='AMBIVALENCE';
+wrd[920]='WORKHOUSE';
+wrd[921]='AMBIVALENTLY';
+wrd[922]='LEGISLATION';
+wrd[923]='TRANSLATABLE';
+wrd[924]='PREJUDICES';
+wrd[925]='AMBULANT';
+wrd[926]='SHIPBUILDING';
+wrd[927]='BAILIFFS';
+wrd[928]='CARTOONIST';
+wrd[929]='ACCELERATORS';
+wrd[930]='CLEARUPS';
+wrd[931]='EBULLIENT';
+wrd[932]='TRUNCATING';
+wrd[933]='MODERATES';
+wrd[934]='SCREWING';
+wrd[935]='CATEGORISING';
+wrd[936]='UNRELIABLE';
+wrd[937]='CUCKOLDED';
+wrd[938]='HYPOTHESISES';
+wrd[939]='NATURALISTS';
+wrd[940]='PARODIES';
+wrd[941]='CEASELESS';
+wrd[942]='PATCHWORK';
+wrd[943]='AMENDMENT';
+wrd[944]='NICKNAMED';
+wrd[945]='DEFLECTORS';
+wrd[946]='HEAVINESS';
+wrd[947]='EXTRADITING';
+wrd[948]='MULTIPLEXED';
+wrd[949]='GRAPESHOT';
+wrd[950]='DOCKYARDS';
+wrd[951]='DETERMINE';
+wrd[952]='LUBRICANTS';
+wrd[953]='PARLIAMENTS';
+wrd[954]='COUSINLY';
+wrd[955]='COLLECTIVELY';
+wrd[956]='CONTRAVENED';
+wrd[957]='LIKENESSES';
+wrd[958]='CONFISCATED';
+wrd[959]='DERIVATION';
+wrd[960]='SKETCHIEST';
+wrd[961]='QUAVERING';
+wrd[962]='TROPOPAUSE';
+wrd[963]='PLEASANT';
+wrd[964]='HIDEANDSEEK';
+wrd[965]='CLASSMATE';
+wrd[966]='OVERFEEDING';
+wrd[967]='BASILISKS';
+wrd[968]='GRASPING';
+wrd[969]='ASSISTED';
+wrd[970]='SHADINGS';
+wrd[971]='SHIPPABLE';
+wrd[972]='COMPROMISES';
+wrd[973]='CLAMPDOWN';
+wrd[974]='RUSTICATED';
+wrd[975]='UNDERSTOOD';
+wrd[976]='NICENESS';
+wrd[977]='APPETITES';
+wrd[978]='TREADMILL';
+wrd[979]='GALACTIC';
+wrd[980]='INTERLEAVING';
+wrd[981]='ALIPHATIC';
+wrd[982]='DRIBBLES';
+wrd[983]='AMPLIFIED';
+wrd[984]='IMPEACHMENTS';
+wrd[985]='SPRINTERS';
+wrd[986]='SLEDGEHAMMER';
+wrd[987]='CONFIRMATORY';
+wrd[988]='COMPRISING';
+wrd[989]='CAPTURING';
+wrd[990]='LEGERDEMAIN';
+wrd[991]='EGOTISTICAL';
+wrd[992]='DISPLAYABLE';
+wrd[993]='ENDOSCOPY';
+wrd[994]='COMPRESSION';
+wrd[995]='HUMILIATION';
+wrd[996]='FLESHING';
+wrd[997]='GHOULISH';
+wrd[998]='HONEYMOON';
+wrd[999]='AMUSINGLY';
+wrd[1000]='FACTIONALISM';
+
+num=Math.floor((Math.random() * 1000) + 1); 
+theword=wrd[num];
+
+function restart() {
+	
+	document.getElementById("btna").disabled = false;
+	document.getElementById("btnb").disabled = false;
+	document.getElementById("btnc").disabled = false;
+	document.getElementById("btnd").disabled = false;
+	document.getElementById("btne").disabled = false;
+	document.getElementById("btnf").disabled = false;
+	document.getElementById("btng").disabled = false;
+	document.getElementById("btnh").disabled = false;
+	document.getElementById("btni").disabled = false;
+	document.getElementById("btnj").disabled = false;
+	document.getElementById("btnk").disabled = false;
+	document.getElementById("btnl").disabled = false;
+	document.getElementById("btnm").disabled = false;
+	document.getElementById("btnn").disabled = false;
+	document.getElementById("btno").disabled = false;
+	document.getElementById("btnp").disabled = false;
+	document.getElementById("btnq").disabled = false;
+	document.getElementById("btnr").disabled = false;
+	document.getElementById("btns").disabled = false;
+	document.getElementById("btnt").disabled = false;
+	document.getElementById("btnu").disabled = false;
+	document.getElementById("btnv").disabled = false;
+	document.getElementById("btnw").disabled = false;
+	document.getElementById("btnx").disabled = false;
+	document.getElementById("btny").disabled = false;
+	document.getElementById("btnz").disabled = false;
+	
+	document.getElementById("txt1").value="_"
+	document.getElementById("txt2").value="_"
+	document.getElementById("txt3").value="_"
+	document.getElementById("txt4").value="_"
+	document.getElementById("txt5").value="_"
+	document.getElementById("txt6").value="_"
+	document.getElementById("txt7").value="_"
+	document.getElementById("txt8").value="_"
+	document.getElementById("txt9").value="_"
+	document.getElementById("txt10").value="_"
+	document.getElementById("txt11").value="_"
+	document.getElementById("txt12").value="_"
+	
+	num=Math.floor((Math.random() * 1000) + 1); 
+	theword=wrd[num];
+	
+		document.getElementById("txt1").style.visibility="visible";
+		document.getElementById("txt2").style.visibility="visible";
+		document.getElementById("txt3").style.visibility="visible";
+		document.getElementById("txt4").style.visibility="visible";
+		document.getElementById("txt5").style.visibility="visible";
+		document.getElementById("txt6").style.visibility="visible";
+		document.getElementById("txt7").style.visibility="visible";
+		document.getElementById("txt8").style.visibility="visible";
+		document.getElementById("txt9").style.visibility="visible";
+		document.getElementById("txt10").style.visibility="visible";
+		document.getElementById("txt11").style.visibility="visible";
+		document.getElementById("txt12").style.visibility="visible";
+
+	document.getElementById("imggallows").src="gallows.png"
+	numwrong = 0
+	numright = 0
+	
+	
+}
+
+function grayed(clicked_id) {
+	
+	if (numright !== 0 || numwrong !== 0) {
+	
+	document.getElementById(clicked_id).disabled = true;
+	
+	} else {
+		
+	document.getElementById(clicked_id).disabled = false;
+	
+	}
+	
+}
+
+function pickletter(letter){
+	
+	snd.play()
+	
+     alert ("You chose " + letter);foundit=false;
+	 
+      if (theword.substr(0,1)==letter){ 
+         document.getElementById("txt1").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(1,1)==letter){ 
+         document.getElementById("txt2").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(2,1)==letter){ 
+         document.getElementById("txt3").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(3,1)==letter){ 
+         document.getElementById("txt4").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(4,1)==letter){ 
+         document.getElementById("txt5").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(5,1)==letter){ 
+         document.getElementById("txt6").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(6,1)==letter){ 
+         document.getElementById("txt7").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(7,1)==letter){ 
+         document.getElementById("txt8").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(8,1)==letter){ 
+         document.getElementById("txt9").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(9,1)==letter){ 
+         document.getElementById("txt10").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(10,1)==letter){ 
+         document.getElementById("txt11").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+	 if (theword.substr(11,1)==letter){ 
+         document.getElementById("txt12").value=letter; 
+         numright ++;
+          foundit=true;
+     }
+
+     if (foundit==false){
+        numwrong++;  
+	 snd3.play();     
+     alert("You have " + numwrong + " wrong");
+	 
+     }
+	 if (numwrong==1){
+           document.getElementById("imggallows").src="hang1.png"
+      }
+     if (numwrong==2){
+           document.getElementById("imggallows").src="hang2.png"
+       }
+	 if (numwrong==3){
+           document.getElementById("imggallows").src="hang3.png"
+       }
+	 if (numwrong==4){
+           document.getElementById("imggallows").src="hang4.png"
+       }
+	 if (numwrong==5){
+           document.getElementById("imggallows").src="hang5.png"
+       }
+	 if (numwrong==6){
+           document.getElementById("imggallows").src="hang6.png"
+       }
+	 if (numwrong==7){
+           document.getElementById("imggallows").src="hang7.png"
+       }
+	 if (numwrong==8){
+           document.getElementById("imggallows").src="hang8.png"
+		   numwrong++
+       }
+	   
+	 if (theword.length == 1) {
+		document.getElementById("txt2").style.visibility="hidden";
+		document.getElementById("txt3").style.visibility="hidden";
+		document.getElementById("txt4").style.visibility="hidden";
+		document.getElementById("txt5").style.visibility="hidden";
+		document.getElementById("txt6").style.visibility="hidden";
+		document.getElementById("txt7").style.visibility="hidden";
+		document.getElementById("txt8").style.visibility="hidden";
+		document.getElementById("txt9").style.visibility="hidden";
+		document.getElementById("txt10").style.visibility="hidden";
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden";
+	 } else if (theword.length == 2) {
+		document.getElementById("txt3").style.visibility="hidden";
+		document.getElementById("txt4").style.visibility="hidden";
+		document.getElementById("txt5").style.visibility="hidden";
+		document.getElementById("txt6").style.visibility="hidden";
+		document.getElementById("txt7").style.visibility="hidden";
+		document.getElementById("txt8").style.visibility="hidden";
+		document.getElementById("txt9").style.visibility="hidden";
+		document.getElementById("txt10").style.visibility="hidden";
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden";
+	 } else if (theword.length == 3) {
+		document.getElementById("txt4").style.visibility="hidden";
+		document.getElementById("txt5").style.visibility="hidden";
+		document.getElementById("txt6").style.visibility="hidden";
+		document.getElementById("txt7").style.visibility="hidden";
+		document.getElementById("txt8").style.visibility="hidden";
+		document.getElementById("txt9").style.visibility="hidden";
+		document.getElementById("txt10").style.visibility="hidden";
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden";
+	 } else if (theword.length == 4) {
+		document.getElementById("txt5").style.visibility="hidden";
+		document.getElementById("txt6").style.visibility="hidden";
+		document.getElementById("txt7").style.visibility="hidden";
+		document.getElementById("txt8").style.visibility="hidden";
+		document.getElementById("txt9").style.visibility="hidden";
+		document.getElementById("txt10").style.visibility="hidden";
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden";
+	 } else if (theword.length == 5) {
+		document.getElementById("txt6").style.visibility="hidden";
+		document.getElementById("txt7").style.visibility="hidden";
+		document.getElementById("txt8").style.visibility="hidden";
+		document.getElementById("txt9").style.visibility="hidden";
+		document.getElementById("txt10").style.visibility="hidden";
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden"; 
+	 } else if (theword.length == 6) {
+		document.getElementById("txt7").style.visibility="hidden";
+		document.getElementById("txt8").style.visibility="hidden";
+		document.getElementById("txt9").style.visibility="hidden";
+		document.getElementById("txt10").style.visibility="hidden";
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden"; 
+	 } else if (theword.length == 7) {
+		document.getElementById("txt8").style.visibility="hidden";
+		document.getElementById("txt9").style.visibility="hidden";
+		document.getElementById("txt10").style.visibility="hidden";
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden"; 
+	 } else if (theword.length == 8) {
+		document.getElementById("txt9").style.visibility="hidden";
+		document.getElementById("txt10").style.visibility="hidden";
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden";  
+	 } else if (theword.length == 9) {
+		document.getElementById("txt10").style.visibility="hidden";
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden";   
+	 } else if (theword.length == 10) {
+		document.getElementById("txt11").style.visibility="hidden";
+		document.getElementById("txt12").style.visibility="hidden";   
+	 } else if (theword.length == 11) {
+		 document.getElementById("txt12").style.visibility="hidden"; 
+	 }
+
+	if (numwrong == 9) {
+	snd2.play()
+	document.getElementById("imggallows").src="hang8.png"
+	alert("You have lost the game!")
+	alert(theword)
+	rndloss++;
+	restart();
+	}
+	if (numright == theword.length) {
+	snd4.play()
+	alert("You have won this round!")
+	rndwin++;
+	restart();
+	}
+	document.getElementById("rndwins").value=rndwin
+	document.getElementById("rndlosses").value=rndloss
+}
+
+
+
+
+
+
+
+
+
+
+
+</script>
+<style type="text/css">
+<!--
+body {
+	background-image: url(bg3.jpg);
+	color: #FFF;
+}
+-->
+</style></head>
+
+<body>
+<p><img src="gallows.png" name="imggallows" width="600" height="583" id="imggallows" style="position:absolute; left: 623px; top: 42px;"/></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>
+  <label>
+    <input name="txt1" type="text" id="txt1" style=" position:absolute; left: 50px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  </label>
+  <input name="txt2" type="text" id="txt2" style=" position:absolute; left: 90px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt3" type="text" id="txt3" style=" position:absolute; left: 130px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt4" type="text" id="txt4" style=" position:absolute; left: 170px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt5" type="text" id="txt5" style=" position:absolute; left: 210px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt6" type="text" id="txt6" style=" position:absolute; left: 250px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt7" type="text" id="txt7" style=" position:absolute; left: 290px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt8" type="text" id="txt8" style=" position:absolute; left: 330px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt9" type="text" id="txt9" style=" position:absolute; left: 370px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt10" type="text" id="txt10" style=" position:absolute; left: 410px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt11" type="text" id="txt11" style=" position:absolute; left: 450px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+  <input name="txt12" type="text" id="txt12" style=" position:absolute; left: 490px; font-size:36px; font-weight:bold; border:hidden;" value="_" size="2" readonly="readonly"/>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>
+  Round Wins:
+  <input name="rndwins" type="text" id="rndwins" value="0" readonly="readonly" />
+</p>
+<p>
+  <label>
+    Round Losses:
+    <input name="rndlosses" type="text" id="rndlosses" value="0" readonly="readonly" />
+  </label>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>
+  <label>
+    <input type="submit" name="btna" id="btna" value="A" style="position:absolute; width: 40px; height: 61px; top: 700px;"onclick="pickletter('A');grayed(this.id)"; />
+  </label>
+  <input type="submit" name="btnb" id="btnb" value="B" style="position:absolute; width: 40px; height: 61px; left: 57px; top: 700px;"onclick="pickletter('B');grayed(this.id)";/>
+  <input type="submit" name="btnc" id="btnc" value="C" style="position:absolute; width: 40px; height: 61px; left: 104px; top: 700px;"onclick="pickletter('C');grayed(this.id)";/>
+  <input type="submit" name="btnd" id="btnd" value="D" style="position:absolute; width: 40px; height: 61px; left: 151px; top: 700px;"onclick="pickletter('D');grayed(this.id)";/>
+  <input type="submit" name="btne" id="btne" value="E" style="position:absolute; width: 40px; height: 61px; left: 198px; top: 700px;"onclick="pickletter('E');grayed(this.id)";/>
+  <input type="submit" name="btnf" id="btnf" value="F" style="position:absolute; width: 40px; height: 61px; left: 245px; top: 700px;"onclick="pickletter('F');grayed(this.id)";/>
+  <input type="submit" name="btng" id="btng" value="G" style="position:absolute; width: 40px; height: 61px; left: 292px; top: 700px;"onclick="pickletter('G');grayed(this.id)";/>
+  <input type="submit" name="btnh" id="btnh" value="H" style="position:absolute; width: 40px; height: 61px; left: 339px; top: 700px;"onclick="pickletter('H');grayed(this.id)";/>
+  <input type="submit" name="btni" id="btni" value="I" style="position:absolute; width: 40px; height: 61px; left: 386px; top: 700px;"onclick="pickletter('I');grayed(this.id)";/>
+  <input type="submit" name="btnj" id="btnj" value="J" style="position:absolute; width: 40px; height: 61px; left: 433px; top: 700px;"onclick="pickletter('J');grayed(this.id)";/>
+  <input type="submit" name="btnk" id="btnk" value="K" style="position:absolute; width: 40px; height: 61px; left: 480px; top: 700px;"onclick="pickletter('K');grayed(this.id)";/>
+  <input type="submit" name="btnl" id="btnl" value="L" style="position:absolute; width: 40px; height: 61px; left: 527px; top: 700px;"onclick="pickletter('L');grayed(this.id)";/>
+  <input type="submit" name="btnm" id="btnm" value="M" style="position:absolute; width: 40px; height: 61px; left: 574px; top: 700px;"onclick="pickletter('M');grayed(this.id)";/>
+  <input type="submit" name="btnn" id="btnn" value="N" style="position:absolute; width: 40px; height: 61px; left: 621px; top: 700px;"onclick="pickletter('N');grayed(this.id)";/>
+  <input type="submit" name="btno" id="btno" value="O" style="position:absolute; width: 40px; height: 61px; left: 668px; top: 700px;"onclick="pickletter('O');grayed(this.id)";/>
+  <input type="submit" name="btnp" id="btnp" value="P" style="position:absolute; width: 40px; height: 61px; left: 715px; top: 700px;"onclick="pickletter('P');grayed(this.id)";/>
+  <input type="submit" name="btnq" id="btnq" value="Q" style="position:absolute; width: 40px; height: 61px; left: 762px; top: 700px;"onclick="pickletter('Q');grayed(this.id)";/>
+  <input type="submit" name="btnr" id="btnr" value="R" style="position:absolute; width: 40px; height: 61px; left: 809px; top: 700px;"onclick="pickletter('R');grayed(this.id)";/>
+  <input type="submit" name="btns" id="btns" value="S" style="position:absolute; width: 40px; height: 61px; left: 856px; top: 700px;"onclick="pickletter('S');grayed(this.id)";/>
+  <input type="submit" name="btnt" id="btnt" value="T" style="position:absolute; width: 40px; height: 61px; left: 903px; top: 700px;"onclick="pickletter('T');grayed(this.id)";/>
+  <input type="submit" name="btnu" id="btnu" value="U" style="position:absolute; width: 40px; height: 61px; left: 950px; top: 700px;"onclick="pickletter('U');grayed(this.id)";/>
+  <input type="submit" name="btnv" id="btnv" value="V" style="position:absolute; width: 40px; height: 61px; left: 997px; top: 700px;"onclick="pickletter('V');grayed(this.id)";/>
+  <input type="submit" name="btnw" id="btnw" value="W" style="position:absolute; width: 40px; height: 61px; left: 1044px; top: 700px;"onclick="pickletter('W');grayed(this.id)";/>
+  <input type="submit" name="btnx" id="btnx" value="X" style="position:absolute; width: 40px; height: 61px; left: 1091px; top: 700px;"onclick="pickletter('X');grayed(this.id)";/>
+  <input type="submit" name="btny" id="btny" value="Y" style="position:absolute; width: 40px; height: 61px; left: 1138px; top: 700px;"onclick="pickletter('Y');grayed(this.id)";/>
+  <input type="submit" name="btnz" id="btnz" value="Z" style="position:absolute; width: 40px; height: 61px; left: 1185px; top: 700px;"onclick="pickletter('Z');grayed(this.id)";/>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>
+  <label>
+    <input type="submit" name="reset" id="reset" value="Reset" onclick="restart()";/>
+  </label>
+</p>
+</body>
+</html>
